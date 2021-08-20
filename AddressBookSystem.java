@@ -10,6 +10,7 @@ public class AddressBookSystem {
 		System.out.println("Welcome to Address Book System!");
 		addContact();
 		editContact();
+		deleteContact();
 	}
 	
 	static public void addContact() {
@@ -61,6 +62,22 @@ public class AddressBookSystem {
 				addressBook.get(i).setZip(sc.next());
 				System.out.println("Enter Phone: ");
 				addressBook.get(i).setPhone(sc.next());
+			}
+		}
+		if(flag2==0) {
+			System.out.println("No Such Contact Found!");
+		}
+	}
+	static public void deleteContact() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter First Name to delete : ");
+		String name = sc.next();
+		int flag2 =0;
+		for(int i =0; i<addressBook.size(); i++) {
+			if( addressBook.get(i).getFirstName() == name ) {
+				flag2=1;
+				addressBook.remove(i);
+				System.out.println("Deleted!");
 			}
 		}
 		if(flag2==0) {
