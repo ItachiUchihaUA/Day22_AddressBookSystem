@@ -1,11 +1,14 @@
 package day22;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class AddressBookSystem {
 	
 	static ArrayList<Contact> addressBook = new ArrayList<>();
+	static HashMap<String,Contact> cityBook = new HashMap<>();
+	static HashMap<String,Contact> stateBook = new HashMap<>();
 	public static void main(String[] args) {
 		System.out.println("Welcome to Address Book System!");
 		addContact();
@@ -37,14 +40,19 @@ public class AddressBookSystem {
 				System.out.println("Enter Address: ");
 				c.setAddress(sc.next());
 				System.out.println("Enter City: ");
-				c.setCity(sc.next());
+				String cityName=sc.next();
+				c.setCity(cityName);
 				System.out.println("Enter State: ");
-				c.setState(sc.next());
+				String stateName=sc.next();
+				c.setState(stateName);
 				System.out.println("Enter Zip code: ");
 				c.setZip(sc.next());
 				System.out.println("Enter Phone: ");
 				c.setPhone(sc.next());
 				addressBook.add(c);
+				cityBook.put( cityName, c);
+				stateBook.put( stateName, c);
+				
 			}
 			catch(DuplicateEntry e){
 				System.out.println(e.getMessage());
