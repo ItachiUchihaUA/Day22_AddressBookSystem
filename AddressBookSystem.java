@@ -3,17 +3,21 @@ package day22;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.Set;
 
 public class AddressBookSystem {
 	
 	static ArrayList<Contact> addressBook = new ArrayList<>();
-	static HashMap<String,Contact> cityBook = new HashMap<>();
-	static HashMap<String,Contact> stateBook = new HashMap<>();
+	static HashMap<Contact, String> cityBook = new HashMap<>();
+	static HashMap<Contact, String> stateBook = new HashMap<>();
 	public static void main(String[] args) {
 		System.out.println("Welcome to Address Book System!");
 		addContact();
 		editContact();
 		deleteContact();
+		searchInCityOrState();
+		countForCity();
+		countForState();
 	}
 	
 	static public void addContact() {
@@ -50,8 +54,8 @@ public class AddressBookSystem {
 				System.out.println("Enter Phone: ");
 				c.setPhone(sc.next());
 				addressBook.add(c);
-				cityBook.put( cityName, c);
-				stateBook.put( stateName, c);
+				cityBook.put( c, cityName);
+				stateBook.put( c , stateName);
 				
 			}
 			catch(DuplicateEntry e){
@@ -137,9 +141,46 @@ public class AddressBookSystem {
 			}
 		}
 		else {
-			System.out.println("Enter 1 or 2 only!");
+			System.out.println("Invalid Input!");
 			searchInCityOrState();
 		}
+	}
+	
+	public static void countForCity() {
+		if(cityBook.isEmpty()) {
+			System.out.println("Empty Book");
+			return;
+		}
+		int count=0;
+		System.out.println("Enter City Nmae: ");
+		Scanner sc = new Scanner(System.in);
+		String city = sc.next();
+		Set<Contact> persons = cityBook.keySet();
+		for(Contact p : persons) {
+			if(cityBook.get(p)==city) {
+				count++;
+			}
+		}
+		System.out.println("Count: "+count );
+		
+	}
+	public static void countForState() {
+		if(stateBook.isEmpty()) {
+			System.out.println("Empty Book");
+			return;
+		}
+		int count=0;
+		System.out.println("Enter State Nmae: ");
+		Scanner sc = new Scanner(System.in);
+		String state = sc.next();
+		Set<Contact> persons = stateBook.keySet();
+		for(Contact p : persons) {
+			if(stateBook.get(p)==state) {
+				count++;
+			}
+		}
+		System.out.println("Count: "+count );
+		
 	}
 	
 }
