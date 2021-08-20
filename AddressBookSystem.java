@@ -101,7 +101,39 @@ public class AddressBookSystem {
 			System.out.println("No Such Contact Found!");
 		}
 	}
-
+	
+	static public void searchInCityOrState() {
+		if(addressBook.isEmpty()) {
+			System.out.println("Empty Book!");
+			return;
+		}
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter 1 to search in City or 2 to search in State");
+		int temp= sc.nextInt();
+		if(temp==1) {
+			System.out.println("Enter City Name: ");
+			String city=sc.next();
+			for(int i =0; i<addressBook.size(); i++) {
+				if(addressBook.get(i).getCity()==city) {
+					System.out.println("  "+addressBook.get(i).getFirstName());
+				}
+			}
+		}
+		else if(temp==2) {
+			System.out.println("Enter State Name: ");
+			String State=sc.next();
+			for(int i =0; i<addressBook.size(); i++) {
+				if(addressBook.get(i).getState()==State) {
+					System.out.println("  "+addressBook.get(i).getFirstName());
+				}
+			}
+		}
+		else {
+			System.out.println("Enter 1 or 2 only!");
+			searchInCityOrState();
+		}
+	}
+	
 }
 
 class DuplicateEntry extends Exception{
