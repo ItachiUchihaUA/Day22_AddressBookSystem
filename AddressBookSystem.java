@@ -20,22 +20,39 @@ public class AddressBookSystem {
 			Scanner sc = new Scanner(System.in); 
 			System.out.println("---New Contact---");
 			System.out.println("Enter First Name: ");
-			c.setFirstName(sc.next());
-			System.out.println("Enter Last Name: ");
-			c.setLastName(sc.next());
-			System.out.println("Enter Address: ");
-			c.setAddress(sc.next());
-			System.out.println("Enter City: ");
-			c.setCity(sc.next());
-			System.out.println("Enter State: ");
-			c.setState(sc.next());
-			System.out.println("Enter Zip code: ");
-			c.setZip(sc.next());
-			System.out.println("Enter Phone: ");
-			c.setPhone(sc.next());
-			addressBook.add(c);
+			String firstName = sc.next();
+			try {
+				for(int i=0; i<addressBook.size();i++ ) {
+					if(addressBook.isEmpty()) {
+						break;
+					}else {
+						if(addressBook.get(i).equals(firstName)) {
+							throw new DuplicateEntry();
+						}
+					}
+				}
+				c.setFirstName(firstName);
+				System.out.println("Enter Last Name: ");
+				c.setLastName(sc.next());
+				System.out.println("Enter Address: ");
+				c.setAddress(sc.next());
+				System.out.println("Enter City: ");
+				c.setCity(sc.next());
+				System.out.println("Enter State: ");
+				c.setState(sc.next());
+				System.out.println("Enter Zip code: ");
+				c.setZip(sc.next());
+				System.out.println("Enter Phone: ");
+				c.setPhone(sc.next());
+				addressBook.add(c);
+			}
+			catch(DuplicateEntry e){
+				System.out.println(e.getMessage());
+			}
+			finally {
 			System.out.println("Want to Add more? Enter 1 for Yes or 2 for No :");
 			flag = sc.nextInt();
+			}
 		}
 	}
 	
@@ -85,4 +102,11 @@ public class AddressBookSystem {
 		}
 	}
 
+}
+
+class DuplicateEntry extends Exception{
+	@Override
+	public String getMessage() {
+		return "Duplicate Entry";
+	}
 }

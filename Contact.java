@@ -57,4 +57,9 @@ public class Contact {
 	public void setZip(String zip) {
 		this.zip = zip;
 	} 
+	
+	public boolean equals(Contact c) {
+		return this.getFirstName().equals(c.getFirstName());
+	}
+	
 }
