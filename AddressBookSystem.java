@@ -62,7 +62,7 @@ public class AddressBookSystem {
 				System.out.println(e.getMessage());
 			}
 			finally {
-			System.out.println("Want to Add more? Enter 1 for Yes or 2 for No :");
+			System.out.println("Want to Add more? Enter 0 for Yes or 1 for No :");
 			flag = sc.nextInt();
 			}
 		}
